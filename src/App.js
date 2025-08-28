@@ -92,10 +92,15 @@ function App() {
         : `lat=${location[0]}&lon=${location[1]}`;
 
     const url = "https://api.openweathermap.org/data/2.5/forecast?";
+
+    console.log("Constructed API URL:", `${url}${how_to_search}&appid=${API_KEY}&units=metric&cnt=5&exclude=hourly,minutely`);
     try {
       let res = await fetch(
         `${url}${how_to_search}&appid=${API_KEY}&units=metric&cnt=5&exclude=hourly,minutely`
       );
+      if(!res.ok){
+        throw new Error (`API request failed with status ${res.status}`);
+      }
       let data = await res.json();
       if (data.cod !== "200") {
         setNoData("Location Not Found");
@@ -132,7 +137,7 @@ function App() {
 
   useEffect(() => {
     const loadCountries = async () => {
-      const response = await axios.get("https://restcountries.com/v3.1/all");
+      const response = await axios.get("https://restcountries.com/v3.1/name/all");
       let arr = [];
       response.data.forEach((element) => {
         arr.push(element.name.official);
