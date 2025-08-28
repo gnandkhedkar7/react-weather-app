@@ -217,7 +217,7 @@ function App() {
               </label>
             </div>
             <div className="city">
-              <TbMapSearch />
+              <TbMapSearch /> {city}
             </div>
           </div>
 
@@ -227,7 +227,7 @@ function App() {
                 marginRight: currentLanguage === "es" || "fr" ? "10px" : "0px",
                 color: `${isDark ? "#fff" : "#333"}`,
               }}
-            >
+            > The only weather app you need !
             </h2>
 
             <hr
@@ -259,6 +259,7 @@ function App() {
         </div>
         <div className="info-container">
           <div className="info-inner-container">
+          
             <div className="toggle-container">
               <input
                 type="checkbox"
@@ -302,6 +303,7 @@ function App() {
                 </div>
               ) : (
                 <>
+                <h1 className="centerTextOnMobile">Today</h1>
                   <DetailsCard
                     weather_icon={weatherIcon}
                     data={weatherData}
@@ -309,7 +311,7 @@ function App() {
                     isFahrenheitMode={isFahrenheitMode}
                     degreeSymbol={degreeSymbol}
                   />
-                  <h1 className="title centerTextOnMobile">
+                  <h1 className="title centerTextOnMobile">More on {city}
                   </h1>
                   <ul className="summary">
                     {weatherData.list.map((days, index) => (
