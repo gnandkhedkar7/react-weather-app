@@ -98,9 +98,6 @@ function App() {
       let res = await fetch(
         `${url}${how_to_search}&appid=${API_KEY}&units=metric&cnt=5&exclude=hourly,minutely`
       );
-      if(!res.ok){
-        throw new Error (`API request failed with status ${res.status}`);
-      }
       let data = await res.json();
       if (data.cod !== "200") {
         setNoData("Location Not Found");
@@ -250,7 +247,7 @@ function App() {
               <button className="s-icon">
                 <TbSearch
                   onClick={() => {
-                    navigator.geolocation.getCurrentPositon(myIP);
+                    navigator.geolocation.getCurrentPosition(myIP);
                   }}
                 />
               </button>
